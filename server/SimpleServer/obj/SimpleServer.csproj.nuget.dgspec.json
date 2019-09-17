@@ -1,0 +1,106 @@
+{
+  "format": 1,
+  "restore": {
+    "I:\\lockstep\\server\\SimpleServer\\SimpleServer.csproj": {}
+  },
+  "projects": {
+    "I:\\lockstep\\server\\LockstepEngine\\LockstepEngine.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "I:\\lockstep\\server\\LockstepEngine\\LockstepEngine.csproj",
+        "projectName": "LockstepEngine",
+        "projectPath": "I:\\lockstep\\server\\LockstepEngine\\LockstepEngine.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "I:\\lockstep\\server\\LockstepEngine\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "I:\\lockstep\\server\\SimpleServer\\SimpleServer.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "I:\\lockstep\\server\\SimpleServer\\SimpleServer.csproj",
+        "projectName": "SimpleServer",
+        "projectPath": "I:\\lockstep\\server\\SimpleServer\\SimpleServer.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "I:\\lockstep\\server\\SimpleServer\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "I:\\lockstep\\server\\LockstepEngine\\LockstepEngine.csproj": {
+                "projectPath": "I:\\lockstep\\server\\LockstepEngine\\LockstepEngine.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}

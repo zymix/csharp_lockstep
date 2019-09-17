@@ -1,0 +1,4 @@
+I:\lockstep\server\SimpleServer\obj\Debug\SimpleServer.csprojAssemblyReference.cache
+I:\lockstep\server\SimpleServer\obj\Debug\SimpleServer.csproj.CoreCompileInputs.cache
+I:\lockstep\server\SimpleServer\obj\Debug\SimpleServer.AssemblyInfoInputs.cache
+I:\lockstep\server\SimpleServer\obj\Debug\SimpleServer.AssemblyInfo.cs

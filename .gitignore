@@ -1,0 +1,14 @@
+version/**
+bin/**
+.vs/**
+server/.vs/**
+server/bin/**
+server/LockstepEngine/**
+client/Library
+client/ProjectSettings
+client/obj
+client/Build
+client/Assets/LockstepEngine
+client/Assets/LockstepEngineUnityExt
+client/Logs
+client/.vscode/settings.json
