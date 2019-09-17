@@ -12,3 +12,7 @@ client/Assets/LockstepEngine
 client/Assets/LockstepEngineUnityExt
 client/Logs
 client/.vscode/settings.json
+client/.vs
+*.suo
+*.ide
+*.sqlite
