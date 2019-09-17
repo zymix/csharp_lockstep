@@ -8,14 +8,22 @@ namespace Lockstep.FakeServer{
         private static Server server;
         public static void Main(){
             OneThreadSynchronizationContext context = new OneThreadSynchronizationContext();
-            SynchronizationContext.SetSynchronizationContext(contex);
-            Debug.log("Main start");
+            SynchronizationContext.SetSynchronizationContext(context);
+            Debug.Log("Main start");
             try{
                 DoAwake();
-                while(true){
-                    Thread.Sleep(3);
-                    context.Update();
-                    server.Update();
+                while (true) {
+                    try {
+                        Thread.Sleep(3);
+                        context.Update();
+                        server.Update();
+                    }
+                    catch (ThreadAbortException e) {
+                        return;
+                    }
+                    catch (Exception e) {
+                        Log.Error(e.ToString());
+                    }
                 }
             }catch(ThreadAbortException e){
                 return;
@@ -26,7 +34,7 @@ namespace Lockstep.FakeServer{
 
         static void DoAwake(){
             server = new Server();
-            server.start();
+            server.Start();
         }
     }
 }

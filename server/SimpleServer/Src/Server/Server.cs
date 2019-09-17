@@ -25,7 +25,7 @@ namespace Lockstep.FakeServer{
 
         //id
         private static int idCounter = 0;
-        private int _curCount = 0;
+        private int curCount = 0;
 
         public void Start(){
             _netProxy.MessageDispatcher = this;
@@ -34,7 +34,7 @@ namespace Lockstep.FakeServer{
             _startUpTimeStamp = _lastUpdateTimeStamp = DateTime.Now;
         }
 
-        public void Dispatch(SocketPermission session, Packet packet){
+        public void Dispatch(Session session, Packet packet){
             ushort opcode = packet.Opcode();
             var message = session.Network.MessagePacker.DeserializeFrom(opcode, packet.Bytes, Packet.Index,
                 packet.Length - Packet.Index) as IMessage;
@@ -73,13 +73,65 @@ namespace Lockstep.FakeServer{
             _room?.DoUpdate(fTimeSinceStartUp, fDeltaTime);
         }
 
-        void OnPlayerConnect(){
+        void OnPlayerConnect(Session session, IMessage message) {
+            var msg = message as Msg_JoinRoom;
+            msg.name = msg.name + idCounter;
+            var name = msg.name;
+            if(_name2Player.TryGetValue(name,  out var val)) {
+                return;
+            }
+            var info = new PlayerServerInfo();
+            info.id = idCounter++;
+            info.name = name;
+            _name2Player[name] = info;
+            _id2Player[info.id] = info;
+            _id2Session[info.id] = session;
+            session.BindInfo = info;
+            curCount++;
+            if(curCount >= Room.MaxPlayerCount) {
+                _room = new Room();
+                _room.Init(0);
+                foreach(var player in _id2Player.Values) {
+                    _room.OnPlayerJoin(_id2Session[player.id], player);
+                }
+                OnGameStart(_room);
+            }
+            Debug.Log("OnPlayerConnect count:" + curCount + " " + JsonUtil.ToJson(msg));
+        }
+
+        void OnPlayerQuit(Session session, IMessage message) {
+            Debug.Log("OnPlayerQuit count:" + curCount);
+            var Player = session.GetBindInfo<PlayerServerInfo>();
+            if(Player == null) {
+                return;
+            }
+            _id2Player.Remove(Player.id);
+            _name2Player.Remove(Player.name);
+            _id2Session.Remove(Player.id);
+            curCount--;
+            if (curCount == 0) {
+                _room = null;
+            }
 
         }
 
-        public void Dispatch(Session session, Packet packet)
-        {
-            throw new NotImplementedException();
+        void OnPlayerInput(Session session, IMessage message) {
+            var msg = message as Msg_PlayerInput;
+            var player = session.GetBindInfo<PlayerServerInfo>();
+            _room?.OnPlayerInput(player.id, msg);
         }
+        void OnPlayerHashCode(Session session, IMessage message) {
+            var msg = message as Msg_HashCode;
+            var player = session.GetBindInfo<PlayerServerInfo>();
+            _room?.OnPlayerHashCode(player.id, msg);
+        }
+
+        void OnGameStart(Room room) {
+            if (room.IsRunning) {
+                return;
+            }
+            room.OnGameStart();
+        }
+
     }
 }
