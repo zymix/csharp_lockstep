@@ -2,6 +2,6 @@ namespace Lockstep.Logic
 {
     public interface IView
     {
-        // void BindEntity()
+        void BindEntity(BaseEntity entity);
     }
 }

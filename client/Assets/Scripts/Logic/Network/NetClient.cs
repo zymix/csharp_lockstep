@@ -4,7 +4,7 @@ using System;
 using System.Net;
 
 namespace Lockstep.Logic {
-    public class Client : IMessageDispatcher{
+    public class NetClient : IMessageDispatcher{
         public static IPEndPoint serverIpPoint = NetworkUtil.ToIPEndPoint("127.0.0.1", 10083);
         private NetOuterProxy net = new NetOuterProxy();
         public Session session;

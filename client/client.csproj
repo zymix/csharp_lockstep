@@ -290,7 +290,14 @@
     <Compile Include="Assets\Scripts\Core\Interfaces\IStart.cs" />
     <Compile Include="Assets\Scripts\Core\Interfaces\IUpdate.cs" />
     <Compile Include="Assets\Scripts\Core\Interfaces\IView.cs" />
+    <Compile Include="Assets\Scripts\Logic\Component\BasePlayerComponent.cs" />
+    <Compile Include="Assets\Scripts\Logic\Component\CMover.cs" />
+    <Compile Include="Assets\Scripts\Logic\Interfaces\IPlayerView.cs" />
+    <Compile Include="Assets\Scripts\Logic\Entity\Player.cs" />
     <Compile Include="Assets\Scripts\Logic\Managers\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Logic\Managers\HeroManager.cs" />
+    <Compile Include="Assets\Scripts\Logic\Managers\ResourceManager.cs" />
+    <Compile Include="Assets\Scripts\Logic\Managers\UnityEntityService.cs" />
     <Compile Include="Assets\Scripts\Logic\Network\MessagePacker.cs" />
     <Compile Include="Assets\Scripts\Logic\Network\Msg\Msg.cs" />
     <Compile Include="Assets\Scripts\Logic\Network\NetClient.cs" />
