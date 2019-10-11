@@ -4,6 +4,7 @@ bin/**
 server/.vs/**
 server/bin/**
 server/LockstepEngine/**
+server/SimpleServer/obj
 client/Library
 client/ProjectSettings
 client/obj
@@ -16,3 +17,4 @@ client/.vs
 *.suo
 *.ide
 *.sqlite
+
