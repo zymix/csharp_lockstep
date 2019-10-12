@@ -15,14 +15,15 @@ namespace Lockstep.FakeServer{
 
         private int curLocalId;
         private int curTick;
-        private bool IsRunning;
 
-        public void Init(int v) {
+        public bool IsRunning;
+
+        public void Init(int type) {
             playerInfos = new PlayerServerInfo[MaxPlayerCount];
             sessions = new Session[MaxPlayerCount];
         }
 
-        public DoUpdate(float timeSinceStartUp, float deltaTime) {
+        public void DoUpdate(float timeSinceStartUp, float deltaTime) {
             if (!IsRunning) return;
             CheckInput();
         }
@@ -55,7 +56,7 @@ namespace Lockstep.FakeServer{
             var bytes = frame.ToBytes();
             for(int i = 0; i < MaxPlayerCount; ++i) {
                 var s = sessions[i];
-                sessions.Send((int)EMsgType.FrameInput, bytes);
+                s.Send((int)EMsgType.FrameInput, bytes);
             }
         }
 
@@ -72,6 +73,7 @@ namespace Lockstep.FakeServer{
             if (!id2LocalId.TryGetValue(useId, out localId)) return;
             PlayerInput[] inputs;
             if (!tick2Inputs.TryGetValue(msg.tick, out inputs)) {
+                //填充默认操作帧
                 inputs = new PlayerInput[MaxPlayerCount];
                 tick2Inputs.Add(msg.tick, inputs);
             }

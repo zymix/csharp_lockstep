@@ -1,0 +1,5 @@
+﻿
+namespace LockstepTutorial {
+    class EnemyManager {
+    }
+}

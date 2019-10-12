@@ -112,7 +112,6 @@ namespace Lockstep.FakeServer{
             if (curCount == 0) {
                 _room = null;
             }
-
         }
 
         void OnPlayerInput(Session session, IMessage message) {
@@ -132,6 +131,5 @@ namespace Lockstep.FakeServer{
             }
             room.OnGameStart();
         }
-
     }
 }
