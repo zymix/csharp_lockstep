@@ -181,17 +181,6 @@
     <Compile Include="Assets\LockstepEngine\Math\LUT\LUTAtan2.cs" />
     <Compile Include="Assets\LockstepEngine\Math\LUT\LUTSinCos.cs" />
     <Compile Include="Assets\LockstepEngine\Math\PrimerLUT.cs" />
-    <Compile Include="Assets\LockstepEngine\NetMsg.Common\Src\DictExtensions.cs" />
-    <Compile Include="Assets\LockstepEngine\NetMsg.Common\Src\EMsgSC.cs" />
-    <Compile Include="Assets\LockstepEngine\NetMsg.Common\Src\ExtensionMsg.cs" />
-    <Compile Include="Assets\LockstepEngine\NetMsg.Common\Src\MsgDefine.cs" />
-    <Compile Include="Assets\LockstepEngine\NetMsg.Common\Src\MsgDefine_Login.cs" />
-    <Compile Include="Assets\LockstepEngine\NetMsg.Common\Src\NetworkDefine.cs" />
-    <Compile Include="Assets\LockstepEngine\NetMsg.Common\Src\Udp\InputCmd.cs" />
-    <Compile Include="Assets\LockstepEngine\NetMsg.Common\Src\Udp\Msg_PlayerInput.cs" />
-    <Compile Include="Assets\LockstepEngine\NetMsg.Common\Src\Udp\MutilDiscFrames.cs" />
-    <Compile Include="Assets\LockstepEngine\NetMsg.Common\Src\Udp\MutilFrames.cs" />
-    <Compile Include="Assets\LockstepEngine\NetMsg.Common\Src\Udp\ServerFrame.cs" />
     <Compile Include="Assets\LockstepEngine\Network\AChannel.cs" />
     <Compile Include="Assets\LockstepEngine\Network\AService.cs" />
     <Compile Include="Assets\LockstepEngine\Network\Circularbuffer.cs" />
@@ -289,10 +278,28 @@
     <Compile Include="Assets\Scripts\Core\Interfaces\IStart.cs" />
     <Compile Include="Assets\Scripts\Core\Interfaces\IUpdate.cs" />
     <Compile Include="Assets\Scripts\Core\Interfaces\IView.cs" />
+    <Compile Include="Assets\Scripts\Logic\Component\BasePlayerComponent.cs" />
+    <Compile Include="Assets\Scripts\Logic\Component\CMover.cs" />
+    <Compile Include="Assets\Scripts\Logic\Entity\Player.cs" />
+    <Compile Include="Assets\Scripts\Logic\Interfaces\IPlayerView.cs" />
     <Compile Include="Assets\Scripts\Logic\Managers\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Logic\Managers\HeroManager.cs" />
+    <Compile Include="Assets\Scripts\Logic\Managers\NetMsg.Common\Src\DictExtensions.cs" />
+    <Compile Include="Assets\Scripts\Logic\Managers\NetMsg.Common\Src\EMsgSC.cs" />
+    <Compile Include="Assets\Scripts\Logic\Managers\NetMsg.Common\Src\ExtensionMsg.cs" />
+    <Compile Include="Assets\Scripts\Logic\Managers\NetMsg.Common\Src\MsgDefine.cs" />
+    <Compile Include="Assets\Scripts\Logic\Managers\NetMsg.Common\Src\MsgDefine_Login.cs" />
+    <Compile Include="Assets\Scripts\Logic\Managers\NetMsg.Common\Src\NetworkDefine.cs" />
+    <Compile Include="Assets\Scripts\Logic\Managers\NetMsg.Common\Src\Udp\InputCmd.cs" />
+    <Compile Include="Assets\Scripts\Logic\Managers\NetMsg.Common\Src\Udp\Msg_PlayerInput.cs" />
+    <Compile Include="Assets\Scripts\Logic\Managers\NetMsg.Common\Src\Udp\MutilDiscFrames.cs" />
+    <Compile Include="Assets\Scripts\Logic\Managers\NetMsg.Common\Src\Udp\MutilFrames.cs" />
+    <Compile Include="Assets\Scripts\Logic\Managers\NetMsg.Common\Src\Udp\ServerFrame.cs" />
+    <Compile Include="Assets\Scripts\Logic\Managers\ResourceManager.cs" />
     <Compile Include="Assets\Scripts\Logic\Network\MessagePacker.cs" />
     <Compile Include="Assets\Scripts\Logic\Network\Msg\Msg.cs" />
     <Compile Include="Assets\Scripts\Logic\Network\NetClient.cs" />
+    <Compile Include="Assets\Scripts\Logic\Service\UnityEntityService.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>I:/csharp_lockstep/client/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
