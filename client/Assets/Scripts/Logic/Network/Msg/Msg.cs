@@ -9,7 +9,9 @@ namespace Lockstep.Logic
 {
     public class FrameInput : BaseFormater
     {
-        public int tick;
+        //第几帧
+        public int tick;    
+        //玩家在该帧的输入序列
         public PlayerInput[] inputs;
 
         public override void Serialize(Serializer writer)
