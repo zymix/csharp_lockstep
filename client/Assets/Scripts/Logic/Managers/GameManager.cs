@@ -2,8 +2,12 @@
 using System;
 using System.Collections.Generic;
 using Lockstep.Logic;
+using Lockstep.Math;
+using Lockstep.Util;
+using Lockstep.Collision2D;
 using UnityEngine;
 using Debug = Lockstep.Logging.Debug;
+using Profiler = Lockstep.Util.Profiler;
 
 namespace LockstepTutorial {
     public class GameManager : UnityBaseManager {
@@ -80,6 +84,16 @@ namespace LockstepTutorial {
             }
         }
 
+        public override void DoAwake(){
+            Instance = this;
+            var mgrs = GetComponents<UnityBaseManager>();
+            foreach(var mgr in mgrs){
+                if(mgr != this){
+                    RegisterManagers(mgr);
+                }
+            }
+        }
+
         private void _Start() {
             DoStart();
             foreach (var mgr in managers) {
@@ -92,6 +106,18 @@ namespace LockstepTutorial {
                 netClient.Send(new Msg_JoinRoom() { name = Application.dataPath });
             } else {
                 StartGame(0, playerServerInfos, localPlayerId);
+            }
+        }
+
+        public override void DoStart(){
+            if(isReplay){
+                RecordHelper.Deserialize(recordFilePath, this);
+            }
+            if(isClientMode){
+                playerCount = 1;
+                localPlayerId = 0;
+                playerServerInfos = new PlayerServerInfo[] {ClientModeInfo};
+                frames = new List<FrameInput>();
             }
         }
 
@@ -110,6 +136,9 @@ namespace LockstepTutorial {
                 Step();
             }
         }
+
+        public override void DoUpdate(LFloat deltaTime){}
+        public override void DoDestroy(){}
 
         public static void StartGame(Msg_StartGame msg) {
             UnityEngine.Debug.Log("StartGame");
@@ -149,10 +178,47 @@ namespace LockstepTutorial {
                 }
             } else {
                 Recoder();
-                netClient?.Send(new Msg_HashCode() { tick = curFrameIdx, hash = GetHash() };
+                netClient?.Send(new Msg_HashCode() { tick = curFrameIdx, hash = GetHash() });
                 TraceHelper.TraceFrameState();
                 ++curFrameIdx;
             }
+        }
+
+        private void UpdateFrameInput(){
+            curFrameInput = GetFrame(curFrameIdx);
+            var frame = curFrameInput;
+            for(int i = 0; i < playerCount; ++i){
+                allPlayers[i].InputAgent = frame.inputs[i];
+            }
+        }
+
+        private void Recoder(){
+            _Update();
+        }
+
+        private void Replay(int frameIdx){
+            _Update();
+        }
+        
+        private void _Update(){
+            var deltaTime = new LFloat(true, 30);
+            DoUpdate(deltaTime);
+            foreach(var mgr in managers){
+                mgr.DoUpdate(deltaTime);
+            }
+        }
+
+        private void OnDestroy(){
+            netClient?.Send(new Msg_QuitRoom());
+            foreach(var mgr in managers){
+                mgr.DoDestroy();
+            }
+
+            if(!isReplay){
+                RecordHelper.Serialize(recordFilePath, this);
+            }
+            Debug.FlushTrace();
+            DoDestroy();
         }
 
         public static void PushFrameInput(FrameInput input) {
@@ -197,6 +263,21 @@ namespace LockstepTutorial {
                 }
             }
             return null;
+        }
+
+        public int GetHash(){
+            int hash = 1;
+            int idx = 0;
+            foreach(var entity in allPlayers){
+                hash += entity.currentHealth.GetHash() * PrimerLUT.GetPrimer(idx++);
+                hash += entity.transform.GetHash() * PrimerLUT.GetPrimer(idx++);
+            }
+            foreach(var entity in EnemyManager.Instance.allEnemy){
+                hash += entity.currentHealth.GetHash() * PrimerLUT.GetPrimer(idx++);
+                hash += entity.transform.GetHash() * PrimerLUT.GetPrimer(idx++);
+            }
+            
+            return hash;
         }
     }
 }

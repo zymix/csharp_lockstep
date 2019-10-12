@@ -1,9 +1,11 @@
+using System;
 using System.Collections.Generic;
 using Lockstep.Collision2D;
 using Lockstep.Math;
 using Debug = Lockstep.Logging.Debug;
 
 namespace Lockstep.Logic{
+    [Serializable]
     public class BaseEntity : BaseLifeCycle, IEntity, ILPTriggerEventHandler{
         public static int idCounter{get;private set;}
         public CRigidbody rigidbody = new CRigidbody();
@@ -12,7 +14,7 @@ namespace Lockstep.Logic{
         public int entityID;
         public int prefabID;
         public object engineTransform;
-        public LFloat speed = 5;
+        public LFloat speed = new LFloat(5);
         public int currentHealth;
 
         public BaseEntity(){
