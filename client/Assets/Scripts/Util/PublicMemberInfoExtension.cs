@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Assets.Scripts.Util {
+namespace Lockstep.Util {
     public class AttributeInfo {
         public readonly object attribute;
         public readonly List<PublicMemberInfo> memberInfos;

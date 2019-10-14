@@ -188,7 +188,7 @@ namespace LockstepTutorial {
             curFrameInput = GetFrame(curFrameIdx);
             var frame = curFrameInput;
             for(int i = 0; i < playerCount; ++i){
-                allPlayers[i].InputAgent = frame.inputs[i];
+                allPlayers[i].inputAgent = frame.inputs[i];
             }
         }
 
