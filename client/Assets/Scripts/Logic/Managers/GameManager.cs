@@ -61,7 +61,7 @@ namespace LockstepTutorial {
         private void Awake() {
             Screen.SetResolution(1024, 768, false);
             gameObject.AddComponent<PingMono>();
-            gameObject.AddComponent(InputMono)();
+            gameObject.AddComponent<InputMono>();
 
             _Awake();
         }
@@ -76,7 +76,7 @@ namespace LockstepTutorial {
 
         private void _Awake() {
 #if !UNITY_EDITOR
-            IsReplay = false;
+            isReplay = false;
 #endif
             DoAwake();
             foreach(var mgr in managers) {
